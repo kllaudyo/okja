@@ -4,6 +4,7 @@ namespace WeCash\Http\Controllers\Auth;
 
 use WeCash\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use WeCash\Usuario;
 
 class LoginController extends Controller
 {
@@ -36,4 +37,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
 }

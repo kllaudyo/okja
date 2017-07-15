@@ -76,6 +76,8 @@ class RegisterController extends Controller
         $usuario->id_empresa = $empresa->id_empresa;
         $usuario->save();
 
+        return $usuario;
+
 //
 //        return Usuario::create([
 //            'name' => $data['name'],

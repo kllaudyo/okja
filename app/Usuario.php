@@ -29,4 +29,14 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'nm_senha', 'remember_token',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->nm_senha;
+    }
+
+    public function getAuthIdentifierName(){
+        return 'nm_email';
+    }
+
 }
