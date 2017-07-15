@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Usuario::class,
+            'model' => WeCash\Usuario::class,
         ],
 
         // 'users' => [

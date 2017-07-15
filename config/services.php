@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\Usuario::class,
+        'model' => WeCash\Usuario::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

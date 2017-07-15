@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace WeCash\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

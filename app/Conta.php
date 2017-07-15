@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace WeCash;
 
 use Illuminate\Database\Eloquent\Model;
 

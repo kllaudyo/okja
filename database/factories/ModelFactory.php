@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Usuario::class, function (Faker\Generator $faker) {
+$factory->define(WeCash\Usuario::class, function (Faker\Generator $faker) {
     static $password;
 
     return [

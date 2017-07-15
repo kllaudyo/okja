@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace WeCash\Http\Controllers\Auth;
 
-use App\Usuario;
-use App\Http\Controllers\Controller;
+use WeCash\Usuario;
+use WeCash\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
