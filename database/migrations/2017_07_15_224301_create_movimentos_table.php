@@ -17,11 +17,11 @@ class CreateMovimentosTable extends Migration
             $table->increments('id_movimento');
             $table->integer("id_conta")->unsigned();
             $table->integer("id_categoria")->unsigned();
-            $table->string("ds_movimento",255);
-            $table->date("dt_previsao");
-            $table->date("dt_confirmacao");
-            $table->decimal("vl_previsto",10,2);
-            $table->decimal("vl_confirmado",10,2);
+            $table->string("ds_movimento",255)->nullable();
+            $table->date("dt_previsao")->nullable();
+            $table->date("dt_confirmacao")->nullable();
+            $table->decimal("vl_previsto",10,2)->nullable();
+            $table->decimal("vl_confirmado",10,2)->nullable();
             $table->timestamps();
         });
 
