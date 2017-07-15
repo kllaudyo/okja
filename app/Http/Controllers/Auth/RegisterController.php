@@ -2,6 +2,7 @@
 
 namespace WeCash\Http\Controllers\Auth;
 
+use WeCash\Empresa;
 use WeCash\Usuario;
 use WeCash\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -48,9 +49,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'empresa' => 'required|string|max:255',
+            'usuario' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:tb_usuarios,nm_email',
+            'password' => 'required|string|min:6|confirmed'
         ]);
     }
 
@@ -62,10 +64,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Usuario::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+
+        $empresa = new Empresa();
+        $empresa->nm_empresa = $data["empresa"];
+        $empresa->save();
+
+        $usuario = new Usuario();
+        $usuario->nm_usuario = $data["empresa"];
+        $usuario->nm_email = $data["email"];
+        $usuario->nm_senha = bcrypt($data["password"]);
+        $usuario->id_empresa = $empresa->id_empresa;
+        $usuario->save();
+
+//
+//        return Usuario::create([
+//            'name' => $data['name'],
+//            'email' => $data['email'],
+//            'password' => bcrypt($data['password']),
+//        ]);
     }
 }
