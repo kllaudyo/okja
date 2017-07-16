@@ -3,6 +3,8 @@
 namespace WeCash\Http\Controllers;
 
 use Illuminate\Http\Request;
+use WeCash\Conta;
+
 
 class ContaController extends Controller
 {
@@ -13,7 +15,9 @@ class ContaController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = \Auth::user();
+        $contas = Conta::all()->where("id_empresa",$usuario->id_empresa);
+        return view("conta.index")->with("contas", $contas);
     }
 
     /**
@@ -45,7 +49,9 @@ class ContaController extends Controller
      */
     public function show($id)
     {
-        //
+        //$contas = DB::select("select * from tb_contas where id_conta = {$id}");
+        $conta = Conta::find($id);
+        return response()->json($conta);
     }
 
     /**
