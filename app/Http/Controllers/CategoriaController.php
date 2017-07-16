@@ -3,6 +3,7 @@
 namespace WeCash\Http\Controllers;
 
 use Illuminate\Http\Request;
+use WeCash\Categoria;
 
 class CategoriaController extends Controller
 {
@@ -13,7 +14,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = \Auth::user();
+        $categorias = Categoria::all()->where("id_empresa", $usuario->id_empresa);
+        return view("categoria.index")->with("categorias", $categorias);
     }
 
     /**
