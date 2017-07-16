@@ -39,9 +39,9 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navDropActions">
                                 {{--Todo(1) Criar as rotas angular--}}
-                                <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#modalMovimentacao">Movimentação</a>
-                                <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#modalConta">Conta</a>
-                                <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#modalCategoria">Categoria</a>
+                                <a class="dropdown-item" href="{{action('MovimentoController@create')}}">Movimento</a>
+                                <a class="dropdown-item" href="{{action('ContaController@create')}}">Conta</a>
+                                <a class="dropdown-item" href="{{action('CategoriaController@create')}}">Categoria</a>
                             </div>
                         </li>
                     </ul>

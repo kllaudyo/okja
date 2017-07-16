@@ -4,6 +4,9 @@ namespace WeCash\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use WeCash\Categoria;
+use WeCash\Conta;
+use WeCash\Usuario;
 
 class MovimentoController extends Controller
 {
@@ -44,7 +47,10 @@ class MovimentoController extends Controller
      */
     public function create()
     {
-        //
+        $usuario = \Auth::user();
+        $categorias = Categoria::all()->where("id_empresa", $usuario->id_empresa);
+        $contas = Conta::all()->where("id_empresa", $usuario->id_empresa);
+        return view("movimento.create",["categorias"=>$categorias, "contas"=>$contas]);
     }
 
     /**

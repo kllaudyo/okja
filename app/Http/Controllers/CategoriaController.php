@@ -26,7 +26,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        $usuario = \Auth::user();
+        return view("categoria.create");
     }
 
     /**

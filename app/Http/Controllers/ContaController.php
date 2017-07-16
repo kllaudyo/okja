@@ -27,7 +27,8 @@ class ContaController extends Controller
      */
     public function create()
     {
-        //
+        $usuario = \Auth::user();
+        return view("conta.create");
     }
 
     /**
