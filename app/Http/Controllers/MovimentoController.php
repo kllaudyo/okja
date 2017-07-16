@@ -44,9 +44,7 @@ class MovimentoController extends Controller
         $usuario = \Auth::user();
         $movimentos = DB::select($sql, array($usuario->id_empresa,$data));
 
-        error_log($sql);
-
-        return view("movimento.index",["movimentos"=>$movimentos]);
+        return view("movimento.index",["movimentos"=>$movimentos,"data"=>$data]);
     }
 
     /**
