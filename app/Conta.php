@@ -12,4 +12,8 @@ class Conta extends Model
     protected $fillable = [
         'id_conta', 'nm_conta', 'id_empresa',
     ];
+
+    public function movimentos(){
+        return $this->hasMany('WeCash\Movimento');
+    }
 }

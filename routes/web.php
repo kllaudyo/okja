@@ -22,4 +22,5 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/contas', 'ContaController@index');
     Route::get('/contas/{id}', 'ContaController@show')->where("id","[0-9]+");
     Route::get('/categorias', 'CategoriaController@index');
+    Route::get('/movimentos', 'MovimentoController@index');
 });

@@ -12,7 +12,6 @@
     <style>
         /*Todo(6) Remover styles para um arquivo*/
         body {
-            min-height: 75rem;
             padding-top: 4.5rem;
         }
     </style>
@@ -54,7 +53,7 @@
                     <ul class="navbar-nav my-2 my-lg-0 ">
                         {{--Todo(4)  Definir rotas do laravel--}}
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0);">Movimentação</a>
+                            <a class="nav-link" href="{{action("MovimentoController@index")}}">Movimentação</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{action("ContaController@index")}}">Conta</a>

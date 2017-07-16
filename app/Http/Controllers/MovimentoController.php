@@ -3,6 +3,7 @@
 namespace WeCash\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MovimentoController extends Controller
 {
@@ -13,7 +14,27 @@ class MovimentoController extends Controller
      */
     public function index()
     {
-        //
+        $sql = "SELECT mov.id_movimento,
+                   mov.ds_movimento,
+                   mov.dt_previsao,
+                   mov.dt_confirmacao,
+                   mov.vl_previsto,
+                   cat.id_categoria,
+                   cat.ds_categoria,
+                   cnt.id_conta,
+                   cnt.ds_conta
+              FROM tb_movimentos mov
+                  ,tb_categorias cat
+                  ,tb_contas cnt
+             WHERE mov.id_conta = cnt.id_conta
+               AND mov.id_categoria = cat.id_categoria
+               AND cnt.id_empresa = ?";
+        $usuario = \Auth::user();
+        $movimentos = DB::select($sql, array($usuario->id_empresa));
+
+        error_log($sql);
+
+        return view("movimento.index",["movimentos"=>$movimentos]);
     }
 
     /**
