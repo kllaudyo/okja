@@ -22,9 +22,11 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/contas', 'ContaController@index');
     Route::get('/contas/{id}', 'ContaController@show')->where("id","[0-9]+");
     Route::get('/contas/create', 'ContaController@create');
+    Route::post('/contas', 'ContaController@store');
 
     Route::get('/categorias', 'CategoriaController@index');
     Route::get('/categorias/create', 'CategoriaController@create');
+    Route::post('/categorias', 'CategoriaController@store');
 
     Route::get('/movimentos/{data?}','MovimentoController@index')->where("data","(0[1-9]|10|11|12)20[0-9]{2}$");
     Route::get('/movimentos/create', 'MovimentoController@create');

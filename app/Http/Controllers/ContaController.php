@@ -39,7 +39,14 @@ class ContaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = \Auth::user();
+
+        $conta = new Conta();
+        $conta->ds_conta = $request->input("descricao");
+        $conta->id_empresa = $usuario->id_empresa;
+        $conta->save();
+
+        return redirect()->action("ContaController@index");
     }
 
     /**

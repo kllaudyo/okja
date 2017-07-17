@@ -38,7 +38,15 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = \Auth::user();
+
+        $categoria = new Categoria();
+        $categoria->ds_categoria = $request->input("descricao");
+        $categoria->tp_categoria = $request->input("tipo");
+        $categoria->id_empresa = $usuario->id_empresa;
+        $categoria->save();
+
+        return redirect()->action("CategoriaController@index");
     }
 
     /**
