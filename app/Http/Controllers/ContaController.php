@@ -70,7 +70,14 @@ class ContaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $conta = Conta::find($id);
+
+        if(!empty($conta)){
+            return view("conta.create", ["conta" => $conta]);
+        }
+
+        //Todo(1) DT - Em caso de erro, mandar uma mensagem de feedback para a listagem
+        return redirect()->action("ContaController@index");
     }
 
     /**
@@ -82,7 +89,14 @@ class ContaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $conta = Conta::find($id);
+
+        if(!empty($conta)){
+            $conta->ds_conta = $request->input("descricao");
+            $conta->update();
+        }
+
+        return redirect()->action("ContaController@index");
     }
 
     /**

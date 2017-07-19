@@ -13,7 +13,7 @@
     @foreach($contas as $conta)
     <tr>
         <td class="col-sm-7">{{$conta->ds_conta}}</td>
-        <td><img src="images/pencil.png" /></td>
+        <td><a href="{{action("ContaController@edit",["id"=>$conta->id_conta])}}"><img src="images/pencil.png" /></a></td>
         <td>
             <form class="form-inline" method="post" action="conta-remover.php">
                 <input type="hidden" name="id" value="{{$conta->id_conta}}" />
