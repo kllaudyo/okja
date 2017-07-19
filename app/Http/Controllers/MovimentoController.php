@@ -118,7 +118,18 @@ class MovimentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $movimento = Movimento::find($id);
+
+        if(!empty($movimento)){
+
+            $usuario = \Auth::user();
+            $categorias = Categoria::all()->where("id_empresa", $usuario->id_empresa);
+            $contas = Conta::all()->where("id_empresa", $usuario->id_empresa);
+            return view("movimento.create",["categorias" => $categorias, "contas" => $contas, "movimento" => $movimento]);
+        }
+
+        //Todo(1) DT - Em caso de erro, mandar uma mensagem de feedback para a listagem
+        return redirect()->action("MovimentoController@index");
     }
 
     /**
@@ -130,7 +141,36 @@ class MovimentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $movimento = Movimento::find($id);
+        if(!empty($movimento)){
+
+            $id_conta = $request->input("conta");
+            $id_categoria = $request->input("categoria");
+            $descricao = $request->input("descricao");
+            $previsao = $request->input("previsao");
+            $confirmacao = $request->input("confirmacao");
+            $valor_previsto = $request->input("valor_previsto");
+            $valor_confirmado = $request->input("valor_confirmado");
+
+            $movimento->id_conta = $id_conta;
+            $movimento->id_categoria = $id_categoria;
+            $movimento->ds_movimento = $descricao;
+            $movimento->dt_previsao = $previsao;
+            $movimento->vl_previsto = $valor_previsto;
+
+            if(!is_null($confirmacao)){
+                $movimento->dt_confirmacao = $confirmacao;
+            }
+
+            if(!is_null($valor_confirmado)){
+                $movimento->vl_confirmado = $valor_confirmado;
+            }
+
+            $movimento->update();
+        }
+
+        return redirect()->action("MovimentoController@index");
+
     }
 
     /**

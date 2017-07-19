@@ -51,9 +51,11 @@
         <th>#</th>
         <th>Categoria</th>
         <th>Descrição</th>
+        <th>Conta</th>
         <th>Valor</th>
         <th>Previsão</th>
         <th>Confirmação</th>
+        <th colspan="2"></th>
     </tr>
     </thead>
     <tbody>
@@ -64,9 +66,21 @@
             {{ $movimento->ds_categoria }}
         </td>
         <td>{{$movimento->ds_movimento}}</td>
+        <td>{{$movimento->ds_conta}}</td>
         <td>{{$movimento->vl_previsto}}</td>
         <td>{{$movimento->dt_previsao}}</td>
         <td>{{$movimento->dt_confirmacao}}</td>
+        <td>
+            <a href="{{action("MovimentoController@edit", ["id" => $movimento->id_movimento])}}">
+                <img src="images/pencil-circle.png" />
+            </a>
+        </td>
+        <td>
+            <form class="form-inline" method="post" action="">
+                <input type="hidden" name="id" value="{{$movimento->id_movimento}}" />
+                <input type="image" src="images/delete-variant.png" />
+            </form>
+        </td>
     </tr>
     @endforeach
     </tbody>
