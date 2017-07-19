@@ -3,8 +3,8 @@
 <br />
 <h4>Categorias</h4>
 <br />
-<table class="table table-hover table-striped">
-    <thead>
+<table class="table table-hover">
+    <thead class="thead-default">
     <tr>
         <th colspan="4">Descrição</th>
     </tr>
@@ -22,13 +22,13 @@
         <td class="col-sm-6">{{$categoria->ds_categoria}}</td>
         <td>
             <a href="{{action("CategoriaController@edit", ["id"=>$categoria->id_categoria])}}">
-                <img src="images/pencil.png" />
+                <img src="images/pencil-circle.png" />
             </a>
         </td>
         <td>
             <form class="form-inline" method="post" action="categoria-remover.php">
                 <input type="hidden" name="id" value="{{$categoria->id_categoria}}" />
-                <input type="image" src="images/close-circle.png" />
+                <input type="image" src="images/delete-variant.png" />
             </form>
         </td>
     </tr>
