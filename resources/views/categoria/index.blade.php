@@ -20,7 +20,11 @@
             @endif
         </td>
         <td class="col-sm-6">{{$categoria->ds_categoria}}</td>
-        <td><img src="images/pencil.png" /></td>
+        <td>
+            <a href="{{action("CategoriaController@edit", ["id"=>$categoria->id_categoria])}}">
+                <img src="images/pencil.png" />
+            </a>
+        </td>
         <td>
             <form class="form-inline" method="post" action="categoria-remover.php">
                 <input type="hidden" name="id" value="{{$categoria->id_categoria}}" />

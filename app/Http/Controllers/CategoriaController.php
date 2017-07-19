@@ -68,7 +68,14 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::find($id);
+
+        if(!empty($categoria)){
+            return view("categoria.create", ["categoria" => $categoria]);
+        }
+
+        return redirect()->action("CategoriaController@index");
+
     }
 
     /**
@@ -80,7 +87,15 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categoria = Categoria::find($id);
+
+        if(!empty($categoria)){
+            $categoria->ds_categoria = $request->input("descricao");
+            $categoria->tp_categoria = $request->input("tipo");
+            $categoria->update();
+        }
+
+        return redirect()->action("CategoriaController@index");
     }
 
     /**
