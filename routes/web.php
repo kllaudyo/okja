@@ -24,6 +24,7 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/contas/create', 'ContaController@create');
     Route::post('/contas', 'ContaController@store');
     Route::put('/contas/{id}', 'ContaController@update')->where('id','[0-9]+');
+    Route::delete('/contas/{id}','ContaController@destroy')->where('id','[0-9]+');
 
     Route::get('/categorias', 'CategoriaController@index');
     Route::get('/categorias/create', 'CategoriaController@create');

@@ -107,6 +107,11 @@ class ContaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $conta = Conta::find($id);
+        if(!empty($conta)){
+            $conta->delete();
+        }
+
+        return redirect()->action("ContaController@index");
     }
 }
