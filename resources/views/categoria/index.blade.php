@@ -22,13 +22,13 @@
         <td class="col-sm-6">{{$categoria->ds_categoria}}</td>
         <td>
             <a href="{{action("CategoriaController@edit", ["id"=>$categoria->id_categoria])}}">
-                <img src="images/pencil-circle.png" />
+                <img src="{{ asset('images/pencil-circle.png') }}" />
             </a>
         </td>
         <td>
             <form class="form-inline" method="post" action="categoria-remover.php">
                 <input type="hidden" name="id" value="{{$categoria->id_categoria}}" />
-                <input type="image" src="images/delete-variant.png" />
+                <input type="image" src="{{ asset('images/delete-variant.png') }}" />
             </form>
         </td>
     </tr>

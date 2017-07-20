@@ -72,13 +72,13 @@
         <td>{{$movimento->dt_confirmacao}}</td>
         <td>
             <a href="{{action("MovimentoController@edit", ["id" => $movimento->id_movimento])}}">
-                <img src="images/pencil-circle.png" />
+                <img src="{{ asset('images/pencil-circle.png') }}" />
             </a>
         </td>
         <td>
             <form class="form-inline" method="post" action="">
                 <input type="hidden" name="id" value="{{$movimento->id_movimento}}" />
-                <input type="image" src="images/delete-variant.png" />
+                <input type="image" src="{{ asset('images/delete-variant.png') }}" />
             </form>
         </td>
     </tr>
