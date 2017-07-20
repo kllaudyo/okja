@@ -43,7 +43,7 @@
 </ul>
 <br />
 @if(count($movimentos)==0)
-    <p class="alert alert-warning">Não há compromissos lançados</p>
+    <p class="alert alert-info">Não há compromissos lançados</p>
 @else
 <table class="table table-hover">
     <thead class="thead-default">
@@ -60,8 +60,14 @@
     </thead>
     <tbody>
     @foreach($movimentos as $movimento)
-    <tr>
-        <th scope="row"><input type="checkbox" /></th>
+    <tr class="@wecash_confirmed(!is_null($movimento->dt_confirmacao))">
+        <th scope="row">
+            <form method="POST" action="{{action("MovimentoController@update",["id" => $movimento->id_movimento])}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="PUT" />
+                <input type="checkbox" name="check_confirmacao" @html_checked(!is_null($movimento->dt_confirmacao)) />
+            </form>
+        </th>
         <td>
             {{ $movimento->ds_categoria }}
         </td>
@@ -76,10 +82,9 @@
             </a>
         </td>
         <td>
-            <form class="form-inline" method="post" action="{{action("MovimentoController@destroy",["id"=>$movimento->id_movimento])}}">
+            <form class="form-inline" method="POST" action="{{action("MovimentoController@destroy",["id"=>$movimento->id_movimento])}}">
                 {{csrf_field()}}
                 <input type="hidden" name="_method" value="DELETE" />
-                <input type="hidden" name="id" value="{{$movimento->id_movimento}}" />
                 <input type="image" src="{{ asset('images/delete-variant.png') }}" />
             </form>
         </td>
