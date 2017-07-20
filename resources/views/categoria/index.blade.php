@@ -26,7 +26,9 @@
             </a>
         </td>
         <td>
-            <form class="form-inline" method="post" action="categoria-remover.php">
+            <form class="form-inline" method="post" action="{{action("CategoriaController@destroy",["id" => $categoria->id_categoria])}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE" />
                 <input type="hidden" name="id" value="{{$categoria->id_categoria}}" />
                 <input type="image" src="{{ asset('images/delete-variant.png') }}" />
             </form>

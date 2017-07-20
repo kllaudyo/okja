@@ -31,6 +31,7 @@ Route::group(['middleware'=>'auth'], function (){
     Route::get('/categorias/{id}', 'CategoriaController@edit')->where('id','[0-9]+');
     Route::post('/categorias', 'CategoriaController@store');
     Route::put('/categorias/{id}', 'CategoriaController@update')->where('id','[0-9]+');
+    Route::delete('/categorias/{id}', 'CategoriaController@destroy')->where('id','[0-9]+');
 
     Route::get('/movimentos/{data?}','MovimentoController@index')->where('data','(0[1-9]|10|11|12)20[0-9]{2}$');
     Route::get('/movimentos/create', 'MovimentoController@create');

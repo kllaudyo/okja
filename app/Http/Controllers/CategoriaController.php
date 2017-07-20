@@ -106,6 +106,11 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoria = Categoria::find($id);
+        if(!empty($categoria)){
+            $categoria->delete();
+        }
+
+        return redirect()->action("CategoriaController@index");
     }
 }
