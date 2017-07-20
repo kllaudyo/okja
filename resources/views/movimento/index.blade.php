@@ -76,7 +76,9 @@
             </a>
         </td>
         <td>
-            <form class="form-inline" method="post" action="">
+            <form class="form-inline" method="post" action="{{action("MovimentoController@destroy",["id"=>$movimento->id_movimento])}}">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="DELETE" />
                 <input type="hidden" name="id" value="{{$movimento->id_movimento}}" />
                 <input type="image" src="{{ asset('images/delete-variant.png') }}" />
             </form>

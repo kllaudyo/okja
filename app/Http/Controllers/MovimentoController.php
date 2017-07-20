@@ -181,6 +181,12 @@ class MovimentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $movimento = Movimento::find($id);
+        if(!empty($movimento)){
+            $movimento->delete();
+        }
+
+        return redirect()->action("MovimentoController@index");
+
     }
 }
