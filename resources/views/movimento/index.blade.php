@@ -49,12 +49,12 @@
     <thead class="thead-default">
     <tr>
         <th>#</th>
-        <th>Categoria</th>
-        <th>Descrição</th>
-        <th>Conta</th>
-        <th>Valor</th>
         <th>Previsão</th>
         <th>Confirmação</th>
+        <th>Categoria</th>
+        <th class="w-50">Descrição</th>
+        <th>Conta</th>
+        <th>Valor</th>
         <th colspan="2"></th>
     </tr>
     </thead>
@@ -69,12 +69,12 @@
                 <input type="checkbox" name="check_confirmacao" @html_checked(!is_null($movimento->dt_confirmacao)) />
             </form>
         </th>
+        <td>{{DateTime::createFromFormat('Y-m-d',$movimento->dt_previsao)->format('d/m/Y')}}</td>
+        <td>{{(!empty($movimento->dt_confirmacao))?DateTime::createFromFormat('Y-m-d',$movimento->dt_confirmacao)->format('d/m/Y'):''}}</td>
         <td>{{$movimento->ds_categoria}}</td>
         <td>{{$movimento->ds_movimento}}</td>
         <td>{{$movimento->ds_conta}}</td>
-        <td>{{$movimento->vl_previsto}}</td>
-        <td>{{DateTime::createFromFormat('Y-m-d',$movimento->dt_previsao)->format('d/m/Y')}}</td>
-        <td>{{(!empty($movimento->dt_confirmacao))?DateTime::createFromFormat('Y-m-d',$movimento->dt_confirmacao)->format('d/m/Y'):''}}</td>
+        <td class="text-right">{{number_format($movimento->vl_previsto , 2 , ',' , '.')}}</td>
         <td>
             <a href="{{action("MovimentoController@edit", ["id" => $movimento->id_movimento])}}">
                 <img src="{{ asset('images/pencil-circle.png') }}" />

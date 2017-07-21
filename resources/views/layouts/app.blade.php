@@ -9,6 +9,7 @@
     {{--Todo(0) Criar css e js no assets com ajuda do elixir ou do gulp--}}
     {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset("css/wecash.css")}}" />
 </head>
 <body>
@@ -18,7 +19,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+                <a class="navbar-brand logo" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
                 <div class="collapse navbar-collapse" id="navbarToggler">
                     {{--Compmleted(3) Se Estivar logado--}}
                     @if(Auth::guest())

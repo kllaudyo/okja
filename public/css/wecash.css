@@ -2,6 +2,10 @@ body {
     padding-top: 4.5rem;
 }
 
+.logo{
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
 input.bg-black{
     background-color: #333;
 }

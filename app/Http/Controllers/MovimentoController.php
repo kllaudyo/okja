@@ -40,7 +40,8 @@ class MovimentoController extends Controller
              WHERE mov.id_conta = cnt.id_conta
                AND mov.id_categoria = cat.id_categoria
                AND cnt.id_empresa = ?
-               AND date_format(mov.dt_previsao, '%m%Y') = ? ";
+               AND date_format(mov.dt_previsao, '%m%Y') = ? 
+             ORDER BY if(mov.dt_confirmacao is null,0,1) ASC, mov.dt_previsao desc";
 
         $usuario = \Auth::user();
         $movimentos = DB::select($sql, array($usuario->id_empresa,$data));
@@ -137,7 +138,7 @@ class MovimentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MovimentoRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $movimento = Movimento::find($id);
 
