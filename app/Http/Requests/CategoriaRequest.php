@@ -4,7 +4,7 @@ namespace WeCash\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ContaRequest extends FormRequest
+class CategoriaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,16 @@ class ContaRequest extends FormRequest
     public function rules()
     {
         return [
-            "descricao" => "required"
+            "descricao" => "required",
+            "tipo" => "required"
         ];
     }
 
     public function messages()
     {
         return [
-            "descricao.required" => "Por favor, informe a descrição da conta."
+            "descricao.required" => "Por favor, informe a descrição da categoria.",
+            "tipo.required" => "Por favor, informe o tipo da categoria"
         ];
     }
 }

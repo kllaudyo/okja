@@ -3,6 +3,17 @@
     <br />
     <h4>Categoria</h4>
     <hr />
+    @if(count($errors) > 0)
+        <div class="alert alert-danger fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="alert-heading">Putz...</h4>
+            @foreach($errors->all() as $erro)
+                <p class="mb-0">{{$erro}}</p>
+            @endforeach
+        </div>
+    @endif
     <form method="post" action="{{ (isset($categoria)) ? action("CategoriaController@update",["id"=>$categoria->id_categoria]) : action("CategoriaController@store")}}">
     {{csrf_field()}}
     @if(isset($categoria))
