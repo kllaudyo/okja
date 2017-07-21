@@ -4,6 +4,7 @@ namespace WeCash\Http\Controllers;
 
 use Illuminate\Http\Request;
 use WeCash\Conta;
+use WeCash\Http\Requests\ContaRequest;
 
 
 class ContaController extends Controller
@@ -37,7 +38,7 @@ class ContaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContaRequest $request)
     {
         $usuario = \Auth::user();
 
