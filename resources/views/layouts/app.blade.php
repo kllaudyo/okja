@@ -30,7 +30,7 @@
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#Adicionar" id="navDropActions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Adicionar
+                                <img src="{{asset("images/plus.png")}}" />
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navDropActions">
                                 {{--Todo(1) Criar as rotas angular--}}

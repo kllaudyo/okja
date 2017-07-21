@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use WeCash\Categoria;
 use WeCash\Conta;
+use WeCash\Http\Requests\MovimentoRequest;
 use WeCash\Movimento;
 
 class MovimentoController extends Controller
@@ -66,7 +67,7 @@ class MovimentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MovimentoRequest $request)
     {
         $id_conta = $request->input("conta");
         $id_categoria = $request->input("categoria");
@@ -136,7 +137,7 @@ class MovimentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MovimentoRequest $request, $id)
     {
         $movimento = Movimento::find($id);
 

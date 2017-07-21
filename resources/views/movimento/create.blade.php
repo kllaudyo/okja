@@ -3,7 +3,18 @@
 <br />
 <h4>Movimento</h4>
 <hr />
-<form method="post" action="{{ (isset($movimento)) ? action('MovimentoController@update', ['id'=>$movimento->id_movimento]) : action("MovimentoController@store") }}">
+@if(count($errors) > 0)
+    <div class="alert alert-danger fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="alert-heading">Putz...</h4>
+        @foreach($errors->all() as $erro)
+            <p class="mb-0">{{$erro}}</p>
+        @endforeach
+    </div>
+@endif
+<form id="form-movimento" method="post" action="{{ (isset($movimento)) ? action('MovimentoController@update', ['id'=>$movimento->id_movimento]) : action("MovimentoController@store") }}">
 {{csrf_field()}}
 @if(isset($movimento))
     <input type="hidden" name="_method" value="PUT" />
@@ -56,8 +67,16 @@
 <br />
 <div class="form-group-row text-right">
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-    <button type="button" class="btn btn-secondary">Salvar e Adicionar</button>
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <div class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Salvar
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="javascript:void(0);" onclick="document.getElementById('form-movimento').submit();">Salvar</a>
+            <a class="dropdown-item" href="#">Salvar Adicionar</a>
+        </div>
+    </div>
+
 </div>
 <br />
 </form>
