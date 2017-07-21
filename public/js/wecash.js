@@ -4,10 +4,10 @@
 $(document).ready(function(e){
     $("[name=check_confirmacao]").change(function(e){
         if($(this).is(':checked')){
-            $(this).val("on");
+            $(this).parent().find("[name=fallback_confirmacao]").val("1");
         }else{
-            $(this).val("off");
+            $(this).parent().find("[name=fallback_confirmacao]").val("0");
         }
-        $(this).closest("form").submit();
+        $(this).parent().submit();
     });
 });

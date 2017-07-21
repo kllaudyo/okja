@@ -39,4 +39,5 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('/movimentos', 'MovimentoController@store');
     Route::put('/movimentos/{id}', 'MovimentoController@update')->where('id','[0-9]+');
     Route::delete('/movimentos/{id}', 'MovimentoController@destroy')->where('id','[0-9]+');
+
 });

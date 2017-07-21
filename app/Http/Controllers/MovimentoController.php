@@ -92,9 +92,6 @@ class MovimentoController extends Controller
         }
 
         $movimento->save();
-
-        return redirect();
-
         return redirect()->action("MovimentoController@index");
 
     }
@@ -142,28 +139,41 @@ class MovimentoController extends Controller
     public function update(Request $request, $id)
     {
         $movimento = Movimento::find($id);
+
         if(!empty($movimento)){
 
-            $id_conta = $request->input("conta");
-            $id_categoria = $request->input("categoria");
-            $descricao = $request->input("descricao");
-            $previsao = $request->input("previsao");
-            $confirmacao = $request->input("confirmacao");
-            $valor_previsto = $request->input("valor_previsto");
-            $valor_confirmado = $request->input("valor_confirmado");
+            if($request->exists("fallback_confirmacao")) {
+                if($request->input("fallback_confirmacao",0) == 0 ){
+                    $movimento->dt_confirmacao = null;
+                }else{
+                    $date = new \DateTime();
+                    $movimento->dt_confirmacao = $date->format("Y-m-d");
+                }
 
-            $movimento->id_conta = $id_conta;
-            $movimento->id_categoria = $id_categoria;
-            $movimento->ds_movimento = $descricao;
-            $movimento->dt_previsao = $previsao;
-            $movimento->vl_previsto = $valor_previsto;
+            }else{
 
-            if(!is_null($confirmacao)){
-                $movimento->dt_confirmacao = $confirmacao;
-            }
+                $id_conta = $request->input("conta");
+                $id_categoria = $request->input("categoria");
+                $descricao = $request->input("descricao");
+                $previsao = $request->input("previsao");
+                $confirmacao = $request->input("confirmacao");
+                $valor_previsto = $request->input("valor_previsto");
+                $valor_confirmado = $request->input("valor_confirmado");
 
-            if(!is_null($valor_confirmado)){
-                $movimento->vl_confirmado = $valor_confirmado;
+                $movimento->id_conta = $id_conta;
+                $movimento->id_categoria = $id_categoria;
+                $movimento->ds_movimento = $descricao;
+                $movimento->dt_previsao = $previsao;
+                $movimento->vl_previsto = $valor_previsto;
+
+                if (!is_null($confirmacao)) {
+                    $movimento->dt_confirmacao = $confirmacao;
+                }
+
+                if (!is_null($valor_confirmado)) {
+                    $movimento->vl_confirmado = $valor_confirmado;
+                }
+
             }
 
             $movimento->update();

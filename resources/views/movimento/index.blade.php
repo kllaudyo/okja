@@ -65,17 +65,16 @@
             <form method="POST" action="{{action("MovimentoController@update",["id" => $movimento->id_movimento])}}">
                 {{csrf_field()}}
                 <input type="hidden" name="_method" value="PUT" />
+                <input type="hidden" name="fallback_confirmacao" value="{{is_null($movimento->dt_confirmacao)?'0':'1'}}" />
                 <input type="checkbox" name="check_confirmacao" @html_checked(!is_null($movimento->dt_confirmacao)) />
             </form>
         </th>
-        <td>
-            {{ $movimento->ds_categoria }}
-        </td>
+        <td>{{$movimento->ds_categoria}}</td>
         <td>{{$movimento->ds_movimento}}</td>
         <td>{{$movimento->ds_conta}}</td>
         <td>{{$movimento->vl_previsto}}</td>
-        <td>{{$movimento->dt_previsao}}</td>
-        <td>{{$movimento->dt_confirmacao}}</td>
+        <td>{{DateTime::createFromFormat('Y-m-d',$movimento->dt_previsao)->format('d/m/Y')}}</td>
+        <td>{{(!empty($movimento->dt_confirmacao))?DateTime::createFromFormat('Y-m-d',$movimento->dt_confirmacao)->format('d/m/Y'):''}}</td>
         <td>
             <a href="{{action("MovimentoController@edit", ["id" => $movimento->id_movimento])}}">
                 <img src="{{ asset('images/pencil-circle.png') }}" />
