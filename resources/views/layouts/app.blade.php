@@ -62,7 +62,7 @@
                             <div class="dropdown-menu" aria-labelledby="navDropUser">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sair</a>
                                 {{--Todo(5) Retirar styles inline--}}
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="form-hide">
                                     {{ csrf_field() }}
                                 </form>
                             </div>
