@@ -43,11 +43,11 @@
                     </ul>
 
                     <form class="form-inline mr-auto mt-2 mt-md-0 ml-2">
-                        <input class="form-control mr-sm-2 bg-black" type="text" placeholder="Procurar...">
+                        <input class="form-control mr-sm-2 bg-black search" type="text" placeholder="Procurar...">
                     </form>
 
                     <ul class="navbar-nav my-2 my-lg-0 ">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="{{action("MovimentoController@index")}}">Movimentação</a>
                         </li>
                         <li class="nav-item">
@@ -74,6 +74,14 @@
             </div>
         </nav>
         <div class="container pt-80">
+            @if(session("msg"))
+                <p class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{session("msg")}}
+                </p>
+            @endif
             @yield('content')
             <hr />
             <p>&copy; 2012 - {{ date('Y') }} <strong>{{ config('app.name') }}</strong>. Todos os direitos reservados.</p>

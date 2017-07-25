@@ -47,7 +47,7 @@ class CategoriaController extends Controller
         $categoria->id_empresa = $usuario->id_empresa;
         $categoria->save();
 
-        return redirect()->action("CategoriaController@index");
+        return redirect()->action("CategoriaController@index")->with("msg","Categoria criada com sucesso!");
     }
 
     /**
@@ -96,7 +96,7 @@ class CategoriaController extends Controller
             $categoria->update();
         }
 
-        return redirect()->action("CategoriaController@index");
+        return redirect()->action("CategoriaController@index")->with("msg","Categoria salva com sucesso!");
     }
 
     /**
@@ -112,6 +112,6 @@ class CategoriaController extends Controller
             $categoria->delete();
         }
 
-        return redirect()->action("CategoriaController@index");
+        return redirect()->action("CategoriaController@index")->with("msg", "Categoria removida com sucesso!");
     }
 }
