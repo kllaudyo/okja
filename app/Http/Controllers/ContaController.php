@@ -47,7 +47,7 @@ class ContaController extends Controller
         $conta->id_empresa = $usuario->id_empresa;
         $conta->save();
 
-        return redirect()->action("ContaController@index");
+        return redirect()->action("ContaController@index")->with("msg","Conta criada com sucesso!");
     }
 
     /**
@@ -77,7 +77,6 @@ class ContaController extends Controller
             return view("conta.create", ["conta" => $conta]);
         }
 
-        //Todo(1) DT - Em caso de erro, mandar uma mensagem de feedback para a listagem
         return redirect()->action("ContaController@index");
     }
 
@@ -97,7 +96,7 @@ class ContaController extends Controller
             $conta->update();
         }
 
-        return redirect()->action("ContaController@index");
+        return redirect()->action("ContaController@index")->with("msg","Conta salva com sucesso!");
     }
 
     /**
@@ -113,6 +112,6 @@ class ContaController extends Controller
             $conta->delete();
         }
 
-        return redirect()->action("ContaController@index");
+        return redirect()->action("ContaController@index")->with("msg","Conta removida com sucesso!");
     }
 }

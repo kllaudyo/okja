@@ -94,7 +94,7 @@ class MovimentoController extends Controller
         }
 
         $movimento->save();
-        return redirect()->action("MovimentoController@index");
+        return redirect()->action("MovimentoController@index")->with("msg","Movimento criado com sucesso!");
 
     }
 
@@ -181,7 +181,7 @@ class MovimentoController extends Controller
             $movimento->update();
         }
 
-        return redirect()->action("MovimentoController@index");
+        return redirect()->action("MovimentoController@index")->with("msg","Movimento salvo com sucesso!");
 
     }
 
@@ -198,7 +198,7 @@ class MovimentoController extends Controller
             $movimento->delete();
         }
 
-        return redirect()->action("MovimentoController@index");
+        return redirect()->action("MovimentoController@index")->with("msg","Movimento removido com sucesso!");
 
     }
 }
