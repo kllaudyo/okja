@@ -61,14 +61,14 @@
     <tbody>
     @foreach($movimentos as $movimento)
     <tr class="@wecash_confirmed(!is_null($movimento->dt_confirmacao))">
-        <th scope="row">
+        <td scope="row">
             <form method="POST" action="{{action("MovimentoController@update",["id" => $movimento->id_movimento])}}">
                 {{csrf_field()}}
                 <input type="hidden" name="_method" value="PUT" />
                 <input type="hidden" name="fallback_confirmacao" value="{{is_null($movimento->dt_confirmacao)?'0':'1'}}" />
                 <input type="checkbox" name="check_confirmacao" @html_checked(!is_null($movimento->dt_confirmacao)) />
             </form>
-        </th>
+        </td>
         <td>{{DateTime::createFromFormat('Y-m-d',$movimento->dt_previsao)->format('d/m/Y')}}</td>
         <td>{{(!empty($movimento->dt_confirmacao))?DateTime::createFromFormat('Y-m-d',$movimento->dt_confirmacao)->format('d/m/Y'):''}}</td>
         <td>{{$movimento->ds_categoria}}</td>
@@ -90,6 +90,30 @@
     </tr>
     @endforeach
     </tbody>
+    <tfoot>
+        <tr class="thead-default">
+            <th colspan="9">Totalizadores</th>
+        </tr>
+        <tr>
+            <td class="text-right" colspan="6">Pendente Renda:</td>
+            <td class="text-right" colspan="3">R$ {{number_format($vl_renda_pendente, 2, ',', '.')}}</td>
+        </tr>
+        <tr>
+            <td class="text-right" colspan="6">Pendente Despesa:</td>
+            <td class="text-right" colspan="3">R$ {{number_format($vl_despesa_pendente, 2, ',', '.')}}</td>
+        </tr>
+        <tr>
+            <td class="text-right" colspan="6">Confirmado Renda:</td>
+            <td class="text-right" colspan="3">R$ {{number_format($vl_renda_confirmada, 2, ',', '.')}}</td>
+        </tr>
+        <tr>
+            <td class="text-right" colspan="6">Confirmado Despesa:</td>
+            <td class="text-right" colspan="3">R$ {{number_format($vl_despesa_confirmada, 2, ',', '.')}}</td>
+        </tr>
+        <tr class="thead-default">
+            <th colspan="9">Análise Prévia</th>
+        </tr>
+    </tfoot>
 </table>
 @endif
 @endsection

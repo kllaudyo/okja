@@ -46,7 +46,62 @@ class MovimentoController extends Controller
         $usuario = \Auth::user();
         $movimentos = DB::select($sql, array($usuario->id_empresa,$data));
 
-        return view("movimento.index",["movimentos"=>$movimentos,"data"=>$data]);
+        $vl_despesa_pendente = $this->retornaPendente($usuario->id_empresa, $data, "D");
+        $vl_renda_pendente = $this->retornaPendente($usuario->id_empresa, $data, "C");
+
+        $vl_despesa_confirmada = $this->retornaConfirmado($usuario->id_empresa, $data, "D");
+        $vl_renda_confirmada = $this->retornaConfirmado($usuario->id_empresa, $data, "C");
+
+        return view("movimento.index", [
+            "movimentos" => $movimentos,
+            "data" => $data,
+            "vl_despesa_pendente" => $vl_despesa_pendente,
+            "vl_renda_pendente" => $vl_renda_pendente,
+            "vl_despesa_confirmada" => $vl_despesa_confirmada,
+            "vl_renda_confirmada" => $vl_renda_confirmada
+        ]);
+    }
+
+    private function retornaPendente($id_empresa, $dt_referencia, $tp_categoria){
+
+        $sql = "
+            SELECT
+              sum(mov.vl_previsto) as vl_pendente
+            FROM tb_movimentos mov
+              ,tb_categorias cat
+              ,tb_contas cnt
+            WHERE mov.id_conta = cnt.id_conta
+              AND mov.id_categoria = cat.id_categoria
+              AND cnt.id_empresa = ?
+              AND DATE_FORMAT(mov.dt_previsao, '%m%Y') = ?
+              AND cat.tp_categoria = ?
+              AND mov.dt_confirmacao is null
+              ";
+
+        $pendente = DB::select($sql, array($id_empresa, $dt_referencia, $tp_categoria));
+        return $pendente[0]->vl_pendente;
+
+    }
+
+    private function retornaConfirmado($id_empresa, $dt_referencia, $tp_categoria){
+
+        $sql = "
+            SELECT
+              sum(mov.vl_previsto) as vl_confirmado
+            FROM tb_movimentos mov
+              ,tb_categorias cat
+              ,tb_contas cnt
+            WHERE mov.id_conta = cnt.id_conta
+              AND mov.id_categoria = cat.id_categoria
+              AND cnt.id_empresa = ?
+              AND DATE_FORMAT(mov.dt_previsao, '%m%Y') = ?
+              AND cat.tp_categoria = ?
+              AND mov.dt_confirmacao is not null
+              ";
+
+        $pendente = DB::select($sql, array($id_empresa, $dt_referencia, $tp_categoria));
+        return $pendente[0]->vl_confirmado;
+
     }
 
     /**

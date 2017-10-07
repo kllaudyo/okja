@@ -4,6 +4,8 @@ namespace WeCash\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use WeCash\Categoria;
+use WeCash\Conta;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('wecash_confirmed', function($expression){
             return "<?php echo ({$expression}?'tr-confirmed':''); ?>";
         });
+
+        view()->share("categorias", Categoria::all());
+        view()->share("contas", Conta::all());
+
     }
 
     /**
